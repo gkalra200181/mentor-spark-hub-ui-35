@@ -13,7 +13,15 @@ export default function SearchAndFilters() {
   const [completionFilter, setCompletionFilter] = useState([0, 100]);
   const [filters, setFilters] = useState({
     activeProjects: false,
-    timezone: "all"
+    timezone: "all",
+    projectFilters: {
+      week1: false,
+      week2: false,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   });
 
   const handleCompletionChange = (value: number[]) => {
@@ -23,10 +31,31 @@ export default function SearchAndFilters() {
   const handleFilterChange = (key: string, value: any) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
+  
+  const handleProjectFilterChange = (projectKey: string, value: boolean) => {
+    setFilters((prev) => ({
+      ...prev,
+      projectFilters: {
+        ...prev.projectFilters,
+        [projectKey]: value
+      }
+    }));
+  };
 
   const clearFilters = () => {
     setCompletionFilter([0, 100]);
-    setFilters({ activeProjects: false, timezone: "all" });
+    setFilters({
+      activeProjects: false,
+      timezone: "all",
+      projectFilters: {
+        week1: false,
+        week2: false,
+        week3: false,
+        week4: false,
+        hackathon: false,
+        communityCreation: false
+      }
+    });
   };
 
   return (
@@ -90,6 +119,31 @@ export default function SearchAndFilters() {
                     }
                   />
                   <Label htmlFor="active-projects" className="text-sm font-normal">Show learners with active projects</Label>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-sm">Project Completion</Label>
+                <div className="grid grid-cols-1 gap-2">
+                  {[
+                    { key: "week1", label: "Week 1 Project" },
+                    { key: "week2", label: "Week 2 Project" },
+                    { key: "week3", label: "Week 3 Project" },
+                    { key: "week4", label: "Week 4 Project" },
+                    { key: "hackathon", label: "Optional Hackathon" },
+                    { key: "communityCreation", label: "Optional Community Creation" }
+                  ].map((project) => (
+                    <div key={project.key} className="flex items-center space-x-2">
+                      <Checkbox 
+                        id={`project-${project.key}`} 
+                        checked={filters.projectFilters[project.key]}
+                        onCheckedChange={(checked) => 
+                          handleProjectFilterChange(project.key, !!checked)
+                        }
+                      />
+                      <Label htmlFor={`project-${project.key}`} className="text-sm font-normal">{project.label}</Label>
+                    </div>
+                  ))}
                 </div>
               </div>
 
