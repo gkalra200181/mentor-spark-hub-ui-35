@@ -17,7 +17,7 @@ export default function Hero({ groupName, groupSize }: HeroProps) {
           <span className="text-sm font-medium">{groupSize} learners</span>
         </div>
       </div>
-      <p className="text-gray-600 max-w-2xl mx-auto">
+      <p className="text-gray-600 max-w-2xl mx-auto text-center">
         Welcome back! Use this dashboard to track your learners' progress, engage with them, and support their learning journey in the AI Enthusiast Community.
       </p>
     </div>
