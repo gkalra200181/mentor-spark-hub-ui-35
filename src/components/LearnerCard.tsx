@@ -145,17 +145,17 @@ export default function LearnerCard({
           <div className="mt-8">
             <p className="text-sm font-medium text-gray-500 mb-3">Actions</p>
             <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" className="flex items-center gap-1 text-black bg-indigo-200 hover:bg-indigo-100">
+              <Button variant="outline" size="sm" className="flex items-center gap-1 bg-white text-indigo-400">
                 <MessageSquare className="h-3.5 w-3.5" />
                 <span>Message</span>
               </Button>
               <Button variant="outline" size="sm" className="flex items-center gap-1 text-slate-50 bg-indigo-500 hover:bg-indigo-400">
                 <AlertCircle className="h-3.5 w-3.5" />
-                <span>Nudge</span>
+                <span>Send Nudge</span>
               </Button>
-              <Button size="sm" className="flex items-center gap-1 bg-indigo-800 hover:bg-indigo-700">
+              <Button size="sm" className="flex items-center gap-1 bg-[sidebar-accent-foreground] bg-indigo-400 hover:bg-indigo-300 text-indigo-900">
                 <Award className="h-3.5 w-3.5" />
-                <span>Recognize</span>
+                <span>Give Recognition</span>
               </Button>
             </div>
           </div>
