@@ -12,8 +12,8 @@ import ReflectionLog from "@/components/ReflectionLog";
 const Index = () => {
   // Sample data for the group
   const groupData = {
-    name: "Spring 2025 AI Cohort",
-    size: 75
+    name: "July 2025 Gamma Cohort",
+    size: 95
   };
 
   return (
