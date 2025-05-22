@@ -14,22 +14,22 @@ const sampleShoutouts = [
     message: "Consistently provides helpful feedback to peers and has completed all project milestones ahead of schedule!",
     date: "2 days ago",
     public: true,
-    avatar: ""
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop"
   },
   {
     id: 2,
     name: "Emma Roberts",
-    message: "Created an excellent presentation on AI ethics that has been featured in our monthly newsletter.",
+    message: "Helped several peers troubleshoot technical issues in the forum.",
     date: "4 days ago",
     public: false,
-    avatar: ""
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop"
   }
 ];
 
 // Contributor of the week
 const topContributor = {
   name: "Alex Johnson",
-  avatar: "",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop,
   achievements: [
     { name: "Kind Commenter", icon: MessageCircle },
     { name: "Project Power-Up", icon: Code }
