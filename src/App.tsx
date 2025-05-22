@@ -12,28 +12,32 @@ import ToolCurations from "./pages/ToolCurations";
 import ProjectGallery from "./pages/ProjectGallery";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
+import { useState } from "react";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<TAAdminDashboard />} />
-          <Route path="/dashboard" element={<TADashboard />} />
-          <Route path="/connect" element={<MemberConnect />} />
-          <Route path="/projects" element={<SmallGroupProjects />} />
-          <Route path="/tools" element={<ToolCurations />} />
-          <Route path="/gallery" element={<ProjectGallery />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Move QueryClient initialization inside the component
+  const [queryClient] = useState(() => new QueryClient());
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<TAAdminDashboard />} />
+            <Route path="/dashboard" element={<TADashboard />} />
+            <Route path="/connect" element={<MemberConnect />} />
+            <Route path="/projects" element={<SmallGroupProjects />} />
+            <Route path="/tools" element={<ToolCurations />} />
+            <Route path="/gallery" element={<ProjectGallery />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
