@@ -29,7 +29,7 @@ const sampleShoutouts = [
 // Contributor of the week
 const topContributor = {
   name: "Alex Johnson",
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop,
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
   achievements: [
     { name: "Kind Commenter", icon: MessageCircle },
     { name: "Project Power-Up", icon: Code }
