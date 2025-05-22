@@ -13,46 +13,47 @@ import {
 } from "@/components/ui/sidebar";
 import { HomeIcon, UsersIcon, MessagesSquareIcon, FolderGit2Icon, PackageSearchIcon, GalleryHorizontalIcon, BarChartIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link, useLocation } from "react-router-dom";
 
 export function AppSidebar() {
   const isMobile = useIsMobile();
+  const location = useLocation();
   
   // Navigation items for the sidebar
   const items = [
     {
       title: "TA Dashboard",
-      url: "/",
+      url: "/dashboard",
       icon: HomeIcon,
     },
     {
       title: "TA Admin Dashboard",
-      url: "#",
+      url: "/",
       icon: UsersIcon,
-      active: true,
     },
     {
       title: "Member Connect",
-      url: "#",
+      url: "/connect",
       icon: MessagesSquareIcon,
     },
     {
       title: "Small Group Projects",
-      url: "#",
+      url: "/projects",
       icon: FolderGit2Icon,
     },
     {
       title: "Tool Curations",
-      url: "#",
+      url: "/tools",
       icon: PackageSearchIcon,
     },
     {
       title: "Project Gallery",
-      url: "#",
+      url: "/gallery",
       icon: GalleryHorizontalIcon,
     },
     {
       title: "Leaderboard",
-      url: "#",
+      url: "/leaderboard",
       icon: BarChartIcon,
     },
   ];
@@ -77,11 +78,11 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className={item.active ? 'text-primary font-semibold' : ''}>
-                    <a href={item.url} className="flex items-center space-x-3 py-2">
+                  <SidebarMenuButton asChild className={location.pathname === item.url ? 'text-primary font-semibold' : ''}>
+                    <Link to={item.url} className="flex items-center space-x-3 py-2">
                       <item.icon className="h-5 w-5" />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
