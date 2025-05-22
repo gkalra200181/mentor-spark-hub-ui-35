@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { MessageSquare, AlertCircle, Award, X } from 'lucide-react';
+import { MessageSquare, AlertCircle, Award, X, ChevronRight } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -40,28 +40,29 @@ export default function LearnerCard({ learner }: LearnerCardProps) {
     <div className="relative">
       <div 
         className={cn(
-          "card transition-all duration-300 hover:shadow-md cursor-pointer",
+          "card transition-all duration-300 hover:shadow-md cursor-pointer bg-white py-3 px-4 flex items-center",
           detailsOpen && "bg-gray-50"
         )}
         onClick={() => setDetailsOpen(!detailsOpen)}
       >
-        <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src={learner.avatar} alt={learner.name} />
-            <AvatarFallback>{getInitials(learner.name)}</AvatarFallback>
-          </Avatar>
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <h4 className="font-medium text-left text-sm">{learner.name}</h4>
-              <div className={getStatusColor()}></div>
-            </div>
-            <p className="text-xs text-gray-500 text-left">{learner.email}</p>
+        <Avatar className="h-10 w-10 mr-3">
+          <AvatarImage src={learner.avatar} alt={learner.name} />
+          <AvatarFallback>{getInitials(learner.name)}</AvatarFallback>
+        </Avatar>
+        
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <h4 className="font-medium text-left text-sm">{learner.name}</h4>
+            <div className={getStatusColor()}></div>
           </div>
+          <p className="text-xs text-gray-500 text-left">{learner.completionPercentage}% complete</p>
         </div>
+        
+        <ChevronRight className="h-4 w-4 text-gray-400" />
       </div>
 
       {detailsOpen && (
-        <div className="card absolute top-full left-0 right-0 z-10 mt-1 shadow-lg animate-fade-in">
+        <div className="card absolute top-full left-0 right-0 z-10 mt-1 shadow-lg animate-fade-in bg-white">
           <div className="flex justify-between items-start">
             <h4 className="font-semibold text-left">{learner.name}'s Details</h4>
             <Button 
@@ -80,6 +81,11 @@ export default function LearnerCard({ learner }: LearnerCardProps) {
           <div className="divider" />
           
           <div className="space-y-3">
+            <div>
+              <p className="text-xs font-medium text-gray-500 text-left">Email</p>
+              <p className="text-sm text-left">{learner.email}</p>
+            </div>
+            
             <div>
               <p className="text-xs font-medium text-gray-500 text-left">Progress</p>
               <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
