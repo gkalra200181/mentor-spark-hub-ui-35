@@ -58,7 +58,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <Sidebar defaultCollapsed={isMobile} className="border-r border-[#E1DFDD]">
+    <Sidebar className="border-r border-[#E1DFDD]">
       <SidebarHeader className="flex items-center h-16 px-4">
         <div className="flex items-center space-x-2">
           <img 
@@ -77,8 +77,8 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild active={item.active}>
-                    <a href={item.url} className={`flex items-center space-x-3 py-2 ${item.active ? 'text-primary font-semibold' : ''}`}>
+                  <SidebarMenuButton asChild className={item.active ? 'text-primary font-semibold' : ''}>
+                    <a href={item.url} className="flex items-center space-x-3 py-2">
                       <item.icon className="h-5 w-5" />
                       <span>{item.title}</span>
                     </a>
