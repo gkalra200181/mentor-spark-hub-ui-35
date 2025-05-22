@@ -10,7 +10,7 @@ const TADashboard = () => {
         <div className="flex-1 p-4 md:p-6 overflow-y-auto">
           <div className="bg-primary/5 rounded-lg p-8 mb-6 text-center max-w-7xl mx-auto">
             <h1 className="text-[28px] font-semibold mb-3">TA Dashboard</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto text-center">
               This page is currently under development. Please check back later.
             </p>
           </div>
