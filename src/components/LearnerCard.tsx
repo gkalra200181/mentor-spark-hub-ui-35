@@ -90,7 +90,7 @@ export default function LearnerCard({
                 <p className="text-sm font-medium text-gray-500">Progress</p>
                 <p className="text-sm">{learner.completionPercentage}%</p>
               </div>
-              <Progress value={learner.completionPercentage} className="h-2" indicatorClassName={getProgressColor()} />
+              <Progress value={learner.completionPercentage} className="h-2" indicatorClassName={getProgressColor()} progress-bar-bg />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
