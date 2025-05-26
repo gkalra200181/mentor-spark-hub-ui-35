@@ -1,10 +1,10 @@
+
 import { useState } from "react";
 import {
   MessageSquare,
   AlertCircle,
   Award,
   ChevronRight,
-  Clock,
   MessageCircle,
   Award as AwardIcon,
 } from "lucide-react";
@@ -12,17 +12,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-interface ActivityTimelineItem {
-  action: string;
-  date: string;
-}
+
 interface LearnerCardProps {
   learner: {
     id: number;
@@ -31,16 +27,17 @@ interface LearnerCardProps {
     avatar?: string;
     completionPercentage: number;
     tasksCompleted: number;
-    lastActive: string;
-    recentProjects: string[];
-    commentsGiven: number;
     badgesEarned: number;
-    activityTimeline: ActivityTimelineItem[];
+    appOnboarded: boolean;
+    joinedTeams: boolean;
+    linkedinPost: string;
+    teamsPost: string;
   };
   onSelect: (learner: any) => void;
   selectedLearner: any;
   onClose: () => void;
 }
+
 export default function LearnerCard({
   learner,
   onSelect,
@@ -53,11 +50,13 @@ export default function LearnerCard({
     if (learner.completionPercentage >= 31) return "status-dot-yellow";
     return "status-dot-red";
   };
+
   const getProgressColor = () => {
-    if (learner.completionPercentage >= 70) return "bg-status-green";
-    if (learner.completionPercentage >= 31) return "bg-status-yellow";
-    return "bg-status-red";
+    if (learner.completionPercentage >= 70) return "bg-green-500";
+    if (learner.completionPercentage >= 31) return "bg-yellow-500";
+    return "bg-red-500";
   };
+
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -65,7 +64,9 @@ export default function LearnerCard({
       .join("")
       .toUpperCase();
   };
+
   const isOpen = selectedLearner && selectedLearner.id === learner.id;
+
   return (
     <div className="relative">
       <div
@@ -126,29 +127,9 @@ export default function LearnerCard({
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm font-medium text-gray-500 mb-1">
-                  Last Active
-                </p>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5 text-gray-400" />
-                  <p className="text-sm">{learner.lastActive}</p>
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-medium text-gray-500 mb-1">
                   Tasks Completed
                 </p>
                 <p className="text-sm">{learner.tasksCompleted}</p>
-              </div>
-
-              <div>
-                <p className="text-sm font-medium text-gray-500 mb-1">
-                  Comments Given
-                </p>
-                <div className="flex items-center gap-1">
-                  <MessageCircle className="h-3.5 w-3.5 text-gray-400" />
-                  <p className="text-sm">{learner.commentsGiven}</p>
-                </div>
               </div>
 
               <div>
@@ -164,31 +145,57 @@ export default function LearnerCard({
 
             <div>
               <p className="text-sm font-medium text-gray-500 mb-2">
-                Recent Projects
+                Current Status
               </p>
-              <div className="flex gap-2 flex-wrap">
-                {learner.recentProjects.map((project, idx) => (
-                  <Badge key={idx} variant="secondary" className="font-normal">
-                    {project}
-                  </Badge>
-                ))}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                    learner.appOnboarded 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                    {learner.appOnboarded ? '✅ 😊' : '❌ 😢'}
+                  </span>
+                  <span className="text-sm">App onboarded</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                    learner.joinedTeams 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                    {learner.joinedTeams ? '✅ 😊' : '❌ 😢'}
+                  </span>
+                  <span className="text-sm">Joined Teams</span>
+                </div>
               </div>
             </div>
 
             <div>
               <p className="text-sm font-medium text-gray-500 mb-2">
-                Activity Timeline
+                Links to Completed Projects & LinkedIn Posts
               </p>
-              <div className="space-y-3">
-                {learner.activityTimeline.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="border-l-2 border-gray-200 pl-3 py-1"
+              <div className="space-y-2">
+                <div>
+                  <a 
+                    href={learner.linkedinPost}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:text-blue-800 underline block"
                   >
-                    <p className="text-sm">{item.action}</p>
-                    <p className="text-xs text-gray-500">{item.date}</p>
-                  </div>
-                ))}
+                    LinkedIn post for #W1 Project - Image Generation
+                  </a>
+                </div>
+                <div>
+                  <a 
+                    href={learner.teamsPost}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:text-blue-800 underline block"
+                  >
+                    Teams Post for #W1 Project - Image Generation
+                  </a>
+                </div>
               </div>
             </div>
           </div>
