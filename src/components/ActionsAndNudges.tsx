@@ -50,7 +50,7 @@ export default function ActionsAndNudges() {
       <div className="space-y-4">
         <div>
           <label htmlFor="template-select" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-            Send a templated nudge to learners
+            Send a templated message to nudge learners 🙂
           </label>
           <div className="flex flex-col md:flex-row gap-3">
             <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
