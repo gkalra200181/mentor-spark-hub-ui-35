@@ -194,7 +194,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
                 <div className="space-y-2">
                   <Label className="text-sm">Timezone</Label>
                   <div className="grid grid-cols-2 gap-2">
-                    {["all", "americas", "emea", "apac"].map(zone => (
+                    {["all", "america", "emea", "apac"].map(zone => (
                       <div key={zone} className="flex items-center space-x-2">
                         <input
                           type="radio"
