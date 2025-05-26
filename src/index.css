@@ -100,15 +100,18 @@
 }
 
 .status-dot-red {
-  @apply status-dot bg-status-red;
+  @apply status-dot;
+  background-color: #d13438;
 }
 
 .status-dot-yellow {
-  @apply status-dot bg-status-yellow;
+  @apply status-dot;
+  background-color: #ffaa45;
 }
 
 .status-dot-green {
-  @apply status-dot bg-status-green;
+  @apply status-dot;
+  background-color: #0f7c10;
 }
 
 /* Card and Input Styles */
@@ -121,7 +124,7 @@
 }
 
 .progress-bg {
-  @apply bg-[#eef2ff];
+  background-color: #eef2ff;
 }
 
 .progress-bar-bg {

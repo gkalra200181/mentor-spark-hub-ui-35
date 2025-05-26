@@ -52,9 +52,9 @@ export default function LearnerCard({
   };
 
   const getProgressColor = () => {
-    if (learner.completionPercentage >= 70) return "bg-green-500";
-    if (learner.completionPercentage >= 31) return "bg-yellow-500";
-    return "bg-red-500";
+    if (learner.completionPercentage >= 70) return "bg-[#0f7c10]";
+    if (learner.completionPercentage >= 31) return "bg-[#ffaa45]";
+    return "bg-[#d13438]";
   };
 
   const getInitials = (name: string) => {
