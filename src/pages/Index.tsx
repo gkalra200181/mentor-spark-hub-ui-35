@@ -13,7 +13,7 @@ const Index = () => {
   // Sample data for the group
   const groupData = {
     name: "July 2025 Gamma Cohort",
-    size: 95
+    size: 98
   };
 
   // Empty handler for filters since this page doesn't use the filtering functionality
