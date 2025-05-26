@@ -19,7 +19,8 @@ const TAAdminDashboard = () => {
       hackathon: false,
       communityCreation: false
     },
-    timezone: "all"
+    timezone: "all",
+    searchQuery: ""
   });
 
   const handleFiltersChange = (newFilters: typeof filters) => {

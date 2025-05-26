@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import LearnerCard from '@/components/LearnerCard';
 
@@ -280,6 +281,7 @@ interface FilterState {
     communityCreation: boolean;
   };
   timezone: string;
+  searchQuery: string;
 }
 
 interface ParticipationSnapshotProps {
@@ -302,18 +304,26 @@ export default function ParticipationSnapshot({ filters }: ParticipationSnapshot
   const handleFiltersChange = (newFilters: FilterState) => {
     let filtered = [...allLearners];
 
+    // Filter by search query (name or email)
+    if (newFilters.searchQuery && newFilters.searchQuery.trim() !== '') {
+      const query = newFilters.searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(learner => 
+        learner.name.toLowerCase().includes(query) || 
+        learner.email.toLowerCase().includes(query)
+      );
+    }
+
     // Filter by completion percentage
     filtered = filtered.filter(learner => 
       learner.completionPercentage >= newFilters.completionFilter[0] && 
       learner.completionPercentage <= newFilters.completionFilter[1]
     );
 
-    // Filter by project completion
-    const hasProjectFilters = Object.values(newFilters.projectFilters).some(value => value);
-    if (hasProjectFilters) {
+    // Filter by project completion - ALL selected projects must be completed
+    const selectedProjects = Object.entries(newFilters.projectFilters).filter(([_, isSelected]) => isSelected);
+    if (selectedProjects.length > 0) {
       filtered = filtered.filter(learner => {
-        return Object.entries(newFilters.projectFilters).some(([projectKey, isRequired]) => {
-          if (!isRequired) return true;
+        return selectedProjects.every(([projectKey, _]) => {
           return learner.projectCompletion[projectKey] === true;
         });
       });
