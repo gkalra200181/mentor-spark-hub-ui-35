@@ -16,6 +16,11 @@ const Index = () => {
     size: 95
   };
 
+  // Empty handler for filters since this page doesn't use the filtering functionality
+  const handleFiltersChange = () => {
+    // This page doesn't implement filtering, only the TA Admin Dashboard does
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -24,7 +29,7 @@ const Index = () => {
           <Hero groupName={groupData.name} groupSize={groupData.size} />
           
           <div className="space-y-6 max-w-7xl mx-auto">
-            <SearchAndFilters />
+            <SearchAndFilters onFiltersChange={handleFiltersChange} />
             
             <KeyMetrics />
             
