@@ -147,7 +147,7 @@ const sampleLearners = [
     id: 11,
     name: "Omar Hassan",
     email: "omar.hassan@example.com",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    avatar: "https://i.pravatar.cc/150?img=12",
     completionPercentage: 32,
     tasksCompleted: 4,
     badgesEarned: 0,
