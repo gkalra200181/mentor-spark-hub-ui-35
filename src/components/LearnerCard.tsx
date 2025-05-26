@@ -1,12 +1,11 @@
-
 import { useState } from "react";
 import {
-  MessageSquare,
   AlertCircle,
   Award,
   ChevronRight,
-  MessageCircle,
   Award as AwardIcon,
+  Mail,
+  Linkedin,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { TeamsIcon } from "@/components/icons/TeamsIcon";
 
 interface LearnerCardProps {
   learner: {
@@ -32,6 +32,7 @@ interface LearnerCardProps {
     joinedTeams: boolean;
     linkedinPost: string;
     teamsPost: string;
+    linkedinProfile: string;
   };
   onSelect: (learner: any) => void;
   selectedLearner: any;
@@ -44,6 +45,8 @@ export default function LearnerCard({
   selectedLearner,
   onClose,
 }: LearnerCardProps) {
+  const [showEmail, setShowEmail] = useState(false);
+
   // Determine status color based on completion percentage
   const getStatusColor = () => {
     if (learner.completionPercentage >= 70) return "status-dot-green";
@@ -108,8 +111,38 @@ export default function LearnerCard({
 
           <div className="space-y-6">
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">Email</p>
-              <p className="text-sm">{learner.email}</p>
+              <p className="text-sm font-medium text-gray-500 mb-2">Contact</p>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
+                  onClick={() => setShowEmail(!showEmail)}
+                >
+                  <Mail className="h-3.5 w-3.5" />
+                  <span>Email</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
+                >
+                  <TeamsIcon size={14} />
+                  <span>Message</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
+                  onClick={() => window.open(learner.linkedinProfile, '_blank')}
+                >
+                  <Linkedin className="h-3.5 w-3.5" />
+                  <span>LinkedIn</span>
+                </Button>
+              </div>
+              {showEmail && (
+                <p className="text-sm mt-2 text-gray-600">{learner.email}</p>
+              )}
             </div>
 
             <div>
@@ -206,17 +239,9 @@ export default function LearnerCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="flex items-center gap-1 bg-white text-indigo-400"
-              >
-                <MessageSquare className="h-3.5 w-3.5" />
-                <span>Message</span>
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
                 className="flex items-center gap-1 text-slate-50 bg-indigo-500 hover:bg-indigo-400"
               >
-                <AlertCircle className="h-3.5 w-3.5" />
+                <TeamsIcon size={14} />
                 <span>Send Nudge</span>
               </Button>
               <Button

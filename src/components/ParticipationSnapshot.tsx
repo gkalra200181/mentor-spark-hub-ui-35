@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
 import LearnerCard from '@/components/LearnerCard';
 
-// Sample data for learners
+// Sample data for learners with logical status variations
 const sampleLearners = [
   {
     id: 1,
@@ -15,7 +14,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/alexjohnson"
   },
   {
     id: 2,
@@ -28,7 +28,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/mariagarcia"
   },
   {
     id: 3,
@@ -41,7 +42,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/davidkim"
   },
   {
     id: 4,
@@ -51,10 +53,11 @@ const sampleLearners = [
     completionPercentage: 38,
     tasksCompleted: 5,
     badgesEarned: 1,
-    appOnboarded: false,
+    appOnboarded: true,
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/sarahpatel"
   },
   {
     id: 5,
@@ -67,7 +70,8 @@ const sampleLearners = [
     appOnboarded: false,
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/jameswilson"
   },
   {
     id: 6,
@@ -78,9 +82,10 @@ const sampleLearners = [
     tasksCompleted: 10,
     badgesEarned: 2,
     appOnboarded: true,
-    joinedTeams: true,
+    joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/emmaroberts"
   },
   {
     id: 7,
@@ -93,7 +98,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/michaelchen"
   },
   {
     id: 8,
@@ -104,9 +110,10 @@ const sampleLearners = [
     tasksCompleted: 11,
     badgesEarned: 3,
     appOnboarded: true,
-    joinedTeams: false,
+    joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/priyasingh"
   },
   {
     id: 9,
@@ -119,7 +126,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/carlosrodriguez"
   },
   {
     id: 10,
@@ -132,7 +140,8 @@ const sampleLearners = [
     appOnboarded: true,
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/zoewilliams"
   },
   {
     id: 11,
@@ -145,7 +154,8 @@ const sampleLearners = [
     appOnboarded: false,
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/omarhassan"
   },
   {
     id: 12,
@@ -156,9 +166,10 @@ const sampleLearners = [
     tasksCompleted: 9,
     badgesEarned: 2,
     appOnboarded: true,
-    joinedTeams: true,
+    joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
-    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2"
+    teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
+    linkedinProfile: "https://www.linkedin.com/in/aishajohnson"
   }
 ];
 
