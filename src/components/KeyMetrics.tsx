@@ -4,12 +4,12 @@ import { TrendingUp, Users, CheckCircle } from 'lucide-react';
 export default function KeyMetrics() {
   // Updated metrics data
   const metrics = {
-    activePercentage: 78,
-    activeLearners: "85/95 Learners",
-    onboardingPercentage: 57,
-    onboardingLearners: "60/95 Learners", 
-    teamsPercentage: 86,
-    teamsLearners: "52/60 Onboarded Learners"
+    activePercentage: 32.6,
+    activeLearners: "32/98 Learners",
+    onboardingPercentage: 61.2,
+    onboardingLearners: "60/98 Learners", 
+    teamsPercentage: 70.0,
+    teamsLearners: "42/60 Onboarded Learners"
   };
 
   return (
