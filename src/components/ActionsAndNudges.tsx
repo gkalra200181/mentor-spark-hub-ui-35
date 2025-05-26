@@ -63,9 +63,7 @@ export default function ActionsAndNudges() {
                   </SelectItem>)}
               </SelectContent>
             </Select>
-            <Button onClick={handleSendNudge} disabled={!selectedTemplate} className="bg-primary hover:bg-primary/90">
-              Send Nudge
-            </Button>
+            <Button onClick={handleSendNudge} disabled={!selectedTemplate} className="bg-primary hover:bg-primary/90">Copy Message</Button>
           </div>
         </div>
         
