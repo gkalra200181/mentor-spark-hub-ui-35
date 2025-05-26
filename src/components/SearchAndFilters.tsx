@@ -8,11 +8,25 @@ import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 
-export default function SearchAndFilters() {
+interface SearchAndFiltersProps {
+  onFiltersChange: (filters: {
+    completionFilter: number[];
+    projectFilters: {
+      week1: boolean;
+      week2: boolean;
+      week3: boolean;
+      week4: boolean;
+      hackathon: boolean;
+      communityCreation: boolean;
+    };
+    timezone: string;
+  }) => void;
+}
+
+export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersProps) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [completionFilter, setCompletionFilter] = useState([0, 100]);
   const [filters, setFilters] = useState({
-    activeProjects: false,
     timezone: "all",
     projectFilters: {
       week1: false,
@@ -26,26 +40,43 @@ export default function SearchAndFilters() {
 
   const handleCompletionChange = (value: number[]) => {
     setCompletionFilter(value);
+    onFiltersChange({
+      completionFilter: value,
+      projectFilters: filters.projectFilters,
+      timezone: filters.timezone
+    });
   };
 
   const handleFilterChange = (key: string, value: any) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+    onFiltersChange({
+      completionFilter,
+      projectFilters: newFilters.projectFilters,
+      timezone: newFilters.timezone
+    });
   };
   
   const handleProjectFilterChange = (projectKey: string, value: boolean) => {
-    setFilters((prev) => ({
-      ...prev,
-      projectFilters: {
-        ...prev.projectFilters,
-        [projectKey]: value
-      }
-    }));
+    const newProjectFilters = {
+      ...filters.projectFilters,
+      [projectKey]: value
+    };
+    const newFilters = {
+      ...filters,
+      projectFilters: newProjectFilters
+    };
+    setFilters(newFilters);
+    onFiltersChange({
+      completionFilter,
+      projectFilters: newProjectFilters,
+      timezone: newFilters.timezone
+    });
   };
 
   const clearFilters = () => {
     setCompletionFilter([0, 100]);
-    setFilters({
-      activeProjects: false,
+    const clearedFilters = {
       timezone: "all",
       projectFilters: {
         week1: false,
@@ -55,13 +86,19 @@ export default function SearchAndFilters() {
         hackathon: false,
         communityCreation: false
       }
+    };
+    setFilters(clearedFilters);
+    onFiltersChange({
+      completionFilter: [0, 100],
+      projectFilters: clearedFilters.projectFilters,
+      timezone: clearedFilters.timezone
     });
   };
 
   return (
     <div className="w-full space-y-4">
       <div className="flex flex-col md:flex-row gap-3">
-        <div className="relative flex-1">
+        <div className="relative flex-1 max-w-md">
           <Input 
             type="text" 
             placeholder="Search learners by name or email..." 
@@ -71,12 +108,12 @@ export default function SearchAndFilters() {
         </div>
         <Popover open={filtersOpen} onOpenChange={setFiltersOpen}>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-2 whitespace-nowrap">
+            <Button variant="outline" className="flex items-center gap-2 whitespace-nowrap min-w-[120px]">
               <Filter className="h-4 w-4" />
               <span>Filters</span>
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-80">
+          <PopoverContent className="w-96">
             <div className="space-y-4 p-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-left text-base font-semibold">Filters</h3>
@@ -105,20 +142,6 @@ export default function SearchAndFilters() {
                 <div className="flex justify-between text-xs text-gray-500">
                   <span>{completionFilter[0]}%</span>
                   <span>{completionFilter[1]}%</span>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-sm">Activity Filters</Label>
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id="active-projects" 
-                    checked={filters.activeProjects}
-                    onCheckedChange={(checked) => 
-                      handleFilterChange("activeProjects", checked)
-                    }
-                  />
-                  <Label htmlFor="active-projects" className="text-sm font-normal">Show learners with active projects</Label>
                 </div>
               </div>
 

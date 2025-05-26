@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LearnerCard from '@/components/LearnerCard';
+import SearchAndFilters from '@/components/SearchAndFilters';
 
-// Sample data for learners with logical status variations
+// Sample data for learners with logical status variations and project completion
 const sampleLearners = [
   {
     id: 1,
@@ -15,7 +16,15 @@ const sampleLearners = [
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/alexjohnson"
+    linkedinProfile: "https://www.linkedin.com/in/alexjohnson",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: false,
+      hackathon: true,
+      communityCreation: false
+    }
   },
   {
     id: 2,
@@ -29,7 +38,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/mariagarcia"
+    linkedinProfile: "https://www.linkedin.com/in/mariagarcia",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 3,
@@ -43,7 +60,15 @@ const sampleLearners = [
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/davidkim"
+    linkedinProfile: "https://www.linkedin.com/in/davidkim",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: true,
+      hackathon: true,
+      communityCreation: true
+    }
   },
   {
     id: 4,
@@ -57,7 +82,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/sarahpatel"
+    linkedinProfile: "https://www.linkedin.com/in/sarahpatel",
+    projectCompletion: {
+      week1: true,
+      week2: false,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 5,
@@ -71,7 +104,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/jameswilson"
+    linkedinProfile: "https://www.linkedin.com/in/jameswilson",
+    projectCompletion: {
+      week1: false,
+      week2: false,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 6,
@@ -85,7 +126,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/emmaroberts"
+    linkedinProfile: "https://www.linkedin.com/in/emmaroberts",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 7,
@@ -99,7 +148,15 @@ const sampleLearners = [
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/michaelchen"
+    linkedinProfile: "https://www.linkedin.com/in/michaelchen",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: true,
+      hackathon: false,
+      communityCreation: true
+    }
   },
   {
     id: 8,
@@ -113,7 +170,15 @@ const sampleLearners = [
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/priyasingh"
+    linkedinProfile: "https://www.linkedin.com/in/priyasingh",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: false,
+      hackathon: true,
+      communityCreation: false
+    }
   },
   {
     id: 9,
@@ -127,7 +192,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/carlosrodriguez"
+    linkedinProfile: "https://www.linkedin.com/in/carlosrodriguez",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 10,
@@ -141,7 +214,15 @@ const sampleLearners = [
     joinedTeams: true,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/zoewilliams"
+    linkedinProfile: "https://www.linkedin.com/in/zoewilliams",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: true,
+      week4: true,
+      hackathon: true,
+      communityCreation: true
+    }
   },
   {
     id: 11,
@@ -155,7 +236,15 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/omarhassan"
+    linkedinProfile: "https://www.linkedin.com/in/omarhassan",
+    projectCompletion: {
+      week1: true,
+      week2: false,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   },
   {
     id: 12,
@@ -169,12 +258,38 @@ const sampleLearners = [
     joinedTeams: false,
     linkedinPost: "https://www.linkedin.com/posts/sophs_week-1-challenge-fun-image-generation-activity-7306256779720413184-Mwe6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAADnYiIBZRftD5-UH5cdkW2VIwcfPD4hrJk",
     teamsPost: "https://teams.live.com/l/message/19:6kSa5B3ZPI3G1O4QBLQdGvtDAF5CN50WgpcJ6SDDdME1@thread.v2/1741948192916?tenantId=9188040d-6c67-4c5b-b112-36a304b66dad&groupId=null&parentMessageId=1741948192916&teamName=AI%20Community%3A%20AI%20Forward&channelName=project%20discussion&createdTime=1741948192916&owningTeamId=19%3AAW9FAEuRM8rQDqGeGxvkNY4nRbaU70iXkr339swElJk1%40thread.v2",
-    linkedinProfile: "https://www.linkedin.com/in/aishajohnson"
+    linkedinProfile: "https://www.linkedin.com/in/aishajohnson",
+    projectCompletion: {
+      week1: true,
+      week2: true,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    }
   }
 ];
 
-export default function ParticipationSnapshot() {
-  const [learners] = useState(sampleLearners);
+interface FilterState {
+  completionFilter: number[];
+  projectFilters: {
+    week1: boolean;
+    week2: boolean;
+    week3: boolean;
+    week4: boolean;
+    hackathon: boolean;
+    communityCreation: boolean;
+  };
+  timezone: string;
+}
+
+interface ParticipationSnapshotProps {
+  filters?: FilterState;
+}
+
+export default function ParticipationSnapshot({ filters }: ParticipationSnapshotProps) {
+  const [allLearners] = useState(sampleLearners);
+  const [filteredLearners, setFilteredLearners] = useState(sampleLearners);
   const [selectedLearner, setSelectedLearner] = useState(null);
   
   const handleSelectLearner = (learner) => {
@@ -184,24 +299,58 @@ export default function ParticipationSnapshot() {
   const handleCloseSheet = () => {
     setSelectedLearner(null);
   };
+
+  const handleFiltersChange = (newFilters: FilterState) => {
+    let filtered = [...allLearners];
+
+    // Filter by completion percentage
+    filtered = filtered.filter(learner => 
+      learner.completionPercentage >= newFilters.completionFilter[0] && 
+      learner.completionPercentage <= newFilters.completionFilter[1]
+    );
+
+    // Filter by project completion
+    const hasProjectFilters = Object.values(newFilters.projectFilters).some(value => value);
+    if (hasProjectFilters) {
+      filtered = filtered.filter(learner => {
+        return Object.entries(newFilters.projectFilters).some(([projectKey, isRequired]) => {
+          if (!isRequired) return true;
+          return learner.projectCompletion[projectKey] === true;
+        });
+      });
+    }
+
+    setFilteredLearners(filtered);
+  };
+
+  // Apply filters when they change
+  useEffect(() => {
+    if (filters) {
+      handleFiltersChange(filters);
+    }
+  }, [filters]);
   
   return (
-    <div className="card">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="font-semibold text-left text-lg">Participation Snapshot</h3>
-        <span className="text-sm text-gray-500">{learners.length} learners</span>
-      </div>
+    <div className="space-y-4">
+      <SearchAndFilters onFiltersChange={handleFiltersChange} />
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {learners.map(learner => (
-          <LearnerCard 
-            key={learner.id} 
-            learner={learner}
-            onSelect={handleSelectLearner}
-            selectedLearner={selectedLearner}
-            onClose={handleCloseSheet}
-          />
-        ))}
+      <div className="card">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-semibold text-left text-lg">Participation Snapshot</h3>
+          <span className="text-sm text-gray-500">{filteredLearners.length} learners</span>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredLearners.map(learner => (
+            <LearnerCard 
+              key={learner.id} 
+              learner={learner}
+              onSelect={handleSelectLearner}
+              selectedLearner={selectedLearner}
+              onClose={handleCloseSheet}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
