@@ -22,12 +22,12 @@ export function AppSidebar() {
   // Navigation items for the sidebar
   const items = [
     {
-      title: "TA Dashboard",
+      title: "TA Weekly Task Dashboard",
       url: "/dashboard",
       icon: HomeIcon,
     },
     {
-      title: "TA Admin Dashboard",
+      title: "TA Engagament Tracker",
       url: "/",
       icon: UsersIcon,
     },
