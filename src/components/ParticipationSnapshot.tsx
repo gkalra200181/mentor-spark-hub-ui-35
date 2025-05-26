@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import LearnerCard from '@/components/LearnerCard';
-import SearchAndFilters from '@/components/SearchAndFilters';
 
 // Sample data for learners with logical status variations and project completion
 const sampleLearners = [
@@ -332,8 +331,6 @@ export default function ParticipationSnapshot({ filters }: ParticipationSnapshot
   
   return (
     <div className="space-y-4">
-      <SearchAndFilters onFiltersChange={handleFiltersChange} />
-      
       <div className="card">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-semibold text-left text-lg">Participation Snapshot</h3>
