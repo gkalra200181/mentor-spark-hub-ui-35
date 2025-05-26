@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -39,7 +38,7 @@ const TAEngagement = () => {
           </header>
           
           <main className="flex-1 space-y-4 p-4">
-            <Hero groupName="July 2025 Gamma Cohort" groupSize={95} />
+            <Hero groupName="July 2025 Gamma Cohort" groupSize={98} />
             
             <KeyMetrics />
             
