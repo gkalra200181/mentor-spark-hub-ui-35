@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import Hero from "@/components/Hero";
 import KeyMetrics from "@/components/KeyMetrics";
 import RecognitionHub from "@/components/RecognitionHub";
 import ParticipationSnapshot from "@/components/ParticipationSnapshot";
@@ -38,6 +39,8 @@ const TAEngagement = () => {
           </header>
           
           <main className="flex-1 space-y-4 p-4">
+            <Hero groupName="July 2025 Gamma Cohort" groupSize={95} />
+            
             <KeyMetrics />
             
             <RecognitionHub />
