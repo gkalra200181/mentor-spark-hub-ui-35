@@ -28,8 +28,8 @@ const sampleShoutouts = [
 
 // Contributor of the week
 const topContributor = {
-  name: "Alex Johnson",
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+  name: "Zoe Williams",
+  avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
   achievements: [
     { name: "Helpful Peer x5", icon: ThumbsUp, color: "bg-green-100 text-green-800 border-green-200" },
     { name: "Project Power-Up x12", icon: Star, color: "bg-yellow-100 text-yellow-800 border-yellow-200" }
