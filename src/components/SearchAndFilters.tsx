@@ -204,7 +204,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
                           onChange={() => handleFilterChange("timezone", zone)}
                           className="h-4 w-4 text-primary"
                         />
-                        <Label htmlFor={`timezone-${zone}`} className="text-sm font-normal capitalize">
+                        <Label htmlFor={`timezone-${zone}`} className="text-sm font-normal uppercase">
                           {zone === "all" ? "All" : zone}
                         </Label>
                       </div>
