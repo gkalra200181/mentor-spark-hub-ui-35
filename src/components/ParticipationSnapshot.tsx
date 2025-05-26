@@ -33,8 +33,8 @@ const sampleLearners = [
   },
   {
     id: 3,
-    name: "David Kim",
-    email: "david.kim@example.com",
+    name: "David Mattas",
+    email: "david.mattas@example.com",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
     completionPercentage: 94,
     tasksCompleted: 15,
@@ -145,8 +145,8 @@ const sampleLearners = [
   },
   {
     id: 11,
-    name: "Omar Hassan",
-    email: "omar.hassan@example.com",
+    name: "Zach Hassan",
+    email: "zach.hassan@example.com",
     avatar: "https://i.pravatar.cc/150?img=12",
     completionPercentage: 32,
     tasksCompleted: 4,
