@@ -117,7 +117,7 @@ const TAReflectionLog = () => {
               <h1 className="text-2xl font-semibold text-primary mb-2">
                 Hi {firstName}, how are you feeling today? 🌤️
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-center">
                 Take a moment to reflect and jot down your thoughts 💭 ✨
               </p>
               {streak > 1 && (
@@ -275,7 +275,7 @@ const TAReflectionLog = () => {
                   <CardContent className="text-center py-12">
                     <div className="text-6xl mb-4">📖</div>
                     <h3 className="text-xl font-semibold mb-2">Start Your Reflection Journey</h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-4 text-center">
                       Your reflection history will appear here once you save your first entry.
                     </p>
                     <Button onClick={() => setIsFormOpen(true)} className="bg-primary hover:bg-primary/90">
