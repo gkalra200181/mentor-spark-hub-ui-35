@@ -1,11 +1,31 @@
 
+import { useState } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import KeyMetrics from "@/components/KeyMetrics";
+import RecognitionHub from "@/components/RecognitionHub";
 import ParticipationSnapshot from "@/components/ParticipationSnapshot";
 import ActionsAndNudges from "@/components/ActionsAndNudges";
+import SearchAndFilters from "@/components/SearchAndFilters";
 
 const TAAdminDashboard = () => {
+  const [filters, setFilters] = useState({
+    completionFilter: [0, 100],
+    projectFilters: {
+      week1: false,
+      week2: false,
+      week3: false,
+      week4: false,
+      hackathon: false,
+      communityCreation: false
+    },
+    timezone: "all"
+  });
+
+  const handleFiltersChange = (newFilters: typeof filters) => {
+    setFilters(newFilters);
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -19,11 +39,15 @@ const TAAdminDashboard = () => {
           <main className="flex-1 space-y-4 p-4">
             <KeyMetrics />
             
-            <ParticipationSnapshot />
+            <RecognitionHub />
             
             <div id="actions-nudges">
               <ActionsAndNudges />
             </div>
+
+            <SearchAndFilters onFiltersChange={handleFiltersChange} />
+            
+            <ParticipationSnapshot filters={filters} />
           </main>
         </div>
       </div>
