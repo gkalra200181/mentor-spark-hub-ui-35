@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TAAdminDashboard from "./pages/TAAdminDashboard";
+import TAEngagement from "./pages/TAEngagement";
 import TADashboard from "./pages/TADashboard";
 import TAReflectionLog from "./pages/TAReflectionLog";
 import MemberConnect from "./pages/MemberConnect";
@@ -26,7 +26,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<TAAdminDashboard />} />
+            <Route path="/" element={<TAEngagement />} />
             <Route path="/dashboard" element={<TADashboard />} />
             <Route path="/reflections" element={<TAReflectionLog />} />
             <Route path="/connect" element={<MemberConnect />} />

@@ -8,7 +8,7 @@ import ParticipationSnapshot from "@/components/ParticipationSnapshot";
 import ActionsAndNudges from "@/components/ActionsAndNudges";
 import SearchAndFilters from "@/components/SearchAndFilters";
 
-const TAAdminDashboard = () => {
+const TAEngagement = () => {
   const [filters, setFilters] = useState({
     completionFilter: [0, 100],
     projectFilters: {
@@ -34,7 +34,7 @@ const TAAdminDashboard = () => {
         <div className="flex-1">
           <header className="flex items-center gap-2 px-4 py-3 border-b">
             <SidebarTrigger />
-            <h1 className="text-xl font-semibold">TA Admin Dashboard</h1>
+            <h1 className="text-xl font-semibold">TA Engagement Tracker</h1>
           </header>
           
           <main className="flex-1 space-y-4 p-4">
@@ -56,4 +56,4 @@ const TAAdminDashboard = () => {
   );
 };
 
-export default TAAdminDashboard;
+export default TAEngagement;
