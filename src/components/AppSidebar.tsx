@@ -27,7 +27,7 @@ export function AppSidebar() {
       icon: HomeIcon,
     },
     {
-      title: "TA Engagament Tracker",
+      title: "TA Engagement Tracker",
       url: "/",
       icon: UsersIcon,
     },
