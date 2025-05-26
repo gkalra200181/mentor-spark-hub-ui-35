@@ -22,7 +22,7 @@ export default function KeyMetrics() {
           <Users className="h-6 w-6 text-secondary" />
         </div>
         <div>
-          <p className="text-sm text-gray-500">Learners Onboarding</p>
+          <p className="text-sm text-gray-500">Completed Onboarding</p>
           <h3 className="text-2xl font-semibold text-left">{metrics.topContributors}</h3>
         </div>
       </div>
@@ -32,7 +32,8 @@ export default function KeyMetrics() {
           <CheckCircle className="h-6 w-6 text-interactive" />
         </div>
         <div>
-          <p className="text-sm text-gray-500">Tasks Completion Rate</p>
+          <p className="text-sm text-gray-500">Joined 
+MS Teams</p>
           <h3 className="text-2xl font-semibold text-left">{metrics.avgTasksCompleted}</h3>
         </div>
       </div>
