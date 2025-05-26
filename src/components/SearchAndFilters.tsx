@@ -29,7 +29,6 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
   const [searchQuery, setSearchQuery] = useState("");
   const [completionFilter, setCompletionFilter] = useState([0, 100]);
   const [filters, setFilters] = useState({
-    timezone: "all",
     projectFilters: {
       week1: false,
       week2: false,
@@ -46,7 +45,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter,
       projectFilters: filters.projectFilters,
-      timezone: filters.timezone,
+      timezone: "all",
       searchQuery: query
     });
   };
@@ -56,18 +55,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter: value,
       projectFilters: filters.projectFilters,
-      timezone: filters.timezone,
-      searchQuery
-    });
-  };
-
-  const handleFilterChange = (key: string, value: any) => {
-    const newFilters = { ...filters, [key]: value };
-    setFilters(newFilters);
-    onFiltersChange({
-      completionFilter,
-      projectFilters: newFilters.projectFilters,
-      timezone: newFilters.timezone,
+      timezone: "all",
       searchQuery
     });
   };
@@ -85,7 +73,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter,
       projectFilters: newProjectFilters,
-      timezone: newFilters.timezone,
+      timezone: "all",
       searchQuery
     });
   };
@@ -94,7 +82,6 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     setSearchQuery("");
     setCompletionFilter([0, 100]);
     const clearedFilters = {
-      timezone: "all",
       projectFilters: {
         week1: false,
         week2: false,
@@ -108,7 +95,7 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter: [0, 100],
       projectFilters: clearedFilters.projectFilters,
-      timezone: clearedFilters.timezone,
+      timezone: "all",
       searchQuery: ""
     });
   };
@@ -186,27 +173,6 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
                           }
                         />
                         <Label htmlFor={`project-${project.key}`} className="text-sm font-normal">{project.label}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm">Timezone</Label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {["all", "america", "emea", "apac"].map(zone => (
-                      <div key={zone} className="flex items-center space-x-2">
-                        <input
-                          type="radio"
-                          id={`timezone-${zone}`}
-                          name="timezone"
-                          checked={filters.timezone === zone}
-                          onChange={() => handleFilterChange("timezone", zone)}
-                          className="h-4 w-4 text-primary"
-                        />
-                        <Label htmlFor={`timezone-${zone}`} className="text-sm font-normal uppercase">
-                          {zone === "all" ? "All" : zone}
-                        </Label>
                       </div>
                     ))}
                   </div>
