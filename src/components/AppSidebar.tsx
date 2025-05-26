@@ -11,7 +11,7 @@ import {
   SidebarHeader,
   SidebarTrigger
 } from "@/components/ui/sidebar";
-import { HomeIcon, UsersIcon, MessagesSquareIcon, FolderGit2Icon, PackageSearchIcon, GalleryHorizontalIcon, BarChartIcon } from "lucide-react";
+import { HomeIcon, UsersIcon, MessagesSquareIcon, FolderGit2Icon, PackageSearchIcon, GalleryHorizontalIcon, BarChartIcon, PenLineIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
 
@@ -30,6 +30,11 @@ export function AppSidebar() {
       title: "TA Engagement Tracker",
       url: "/",
       icon: UsersIcon,
+    },
+    {
+      title: "TA Reflection Log",
+      url: "/reflections",
+      icon: PenLineIcon,
     },
     {
       title: "Member Connect",

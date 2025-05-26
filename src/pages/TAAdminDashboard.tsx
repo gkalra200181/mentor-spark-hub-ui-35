@@ -32,10 +32,11 @@ const TAAdminDashboard = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ActionsAndNudges />
-              <ReflectionLog />
             </div>
             
             <RecognitionHub />
+            
+            <ReflectionLog />
           </div>
         </div>
       </div>

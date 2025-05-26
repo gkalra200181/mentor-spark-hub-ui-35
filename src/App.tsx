@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TAAdminDashboard from "./pages/TAAdminDashboard";
 import TADashboard from "./pages/TADashboard";
+import TAReflectionLog from "./pages/TAReflectionLog";
 import MemberConnect from "./pages/MemberConnect";
 import SmallGroupProjects from "./pages/SmallGroupProjects";
 import ToolCurations from "./pages/ToolCurations";
@@ -27,6 +28,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<TAAdminDashboard />} />
             <Route path="/dashboard" element={<TADashboard />} />
+            <Route path="/reflections" element={<TAReflectionLog />} />
             <Route path="/connect" element={<MemberConnect />} />
             <Route path="/projects" element={<SmallGroupProjects />} />
             <Route path="/tools" element={<ToolCurations />} />

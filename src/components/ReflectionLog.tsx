@@ -1,13 +1,18 @@
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { PenLine, Save } from 'lucide-react';
 import { toast } from "sonner";
+
 export default function ReflectionLog() {
   const [reflection, setReflection] = useState('');
   const [shareTip, setShareTip] = useState(false);
+  const navigate = useNavigate();
+
   const handleSaveReflection = () => {
     if (!reflection.trim()) {
       toast.error("Please enter a reflection before saving");
@@ -16,8 +21,12 @@ export default function ReflectionLog() {
     toast.success(shareTip ? "Reflection saved and shared to TA Tips Wall" : "Reflection saved successfully");
     setReflection('');
     setShareTip(false);
+    // Navigate to the TA Reflection Log page
+    navigate('/reflections');
   };
-  return <div className="card">
+
+  return (
+    <div className="card">
       <div className="flex items-center gap-2 mb-4">
         <PenLine className="h-5 w-5 text-primary" />
         <h3 className="font-semibold text-lg text-left">Quick Reflection Entry Log</h3>
@@ -28,11 +37,20 @@ export default function ReflectionLog() {
           <label className="block text-sm font-medium text-gray-700 mb-2 text-left">
             Your private notes & reflections
           </label>
-          <Textarea placeholder="What's working well in your group? What challenges are you facing? Note any insights or ideas here..." value={reflection} onChange={e => setReflection(e.target.value)} className="min-h-32" />
+          <Textarea 
+            placeholder="What's working well in your group? What challenges are you facing? Note any insights or ideas here..." 
+            value={reflection} 
+            onChange={e => setReflection(e.target.value)} 
+            className="min-h-32" 
+          />
         </div>
         
         <div className="flex items-center space-x-2">
-          <Checkbox id="share-tip" checked={shareTip} onCheckedChange={checked => setShareTip(checked === true)} />
+          <Checkbox 
+            id="share-tip" 
+            checked={shareTip} 
+            onCheckedChange={checked => setShareTip(checked === true)} 
+          />
           <Label htmlFor="share-tip" className="text-sm font-normal">
             Share as teaching tip to TA Tips Wall
           </Label>
@@ -43,5 +61,6 @@ export default function ReflectionLog() {
           Save Reflection
         </Button>
       </div>
-    </div>;
+    </div>
+  );
 }
