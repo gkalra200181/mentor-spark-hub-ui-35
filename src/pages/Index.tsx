@@ -18,7 +18,7 @@ const Index = () => {
 
   // Empty handler for filters since this page doesn't use the filtering functionality
   const handleFiltersChange = () => {
-    // This page doesn't implement filtering, only the TA Admin Dashboard does
+    // This page doesn't implement filtering, only the TA Engagement page does
   };
 
   return (
