@@ -19,6 +19,8 @@ interface SearchAndFiltersProps {
       hackathon: boolean;
       communityCreation: boolean;
     };
+    under30Completion: boolean;
+    inactive7Days: boolean;
     timezone: string;
     searchQuery: string;
   }) => void;
@@ -36,7 +38,9 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
       week4: false,
       hackathon: false,
       communityCreation: false
-    }
+    },
+    under30Completion: false,
+    inactive7Days: false
   });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +49,8 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter,
       projectFilters: filters.projectFilters,
+      under30Completion: filters.under30Completion,
+      inactive7Days: filters.inactive7Days,
       timezone: "all",
       searchQuery: query
     });
@@ -55,6 +61,8 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter: value,
       projectFilters: filters.projectFilters,
+      under30Completion: filters.under30Completion,
+      inactive7Days: filters.inactive7Days,
       timezone: "all",
       searchQuery
     });
@@ -73,6 +81,24 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
     onFiltersChange({
       completionFilter,
       projectFilters: newProjectFilters,
+      under30Completion: filters.under30Completion,
+      inactive7Days: filters.inactive7Days,
+      timezone: "all",
+      searchQuery
+    });
+  };
+
+  const handleSpecialFilterChange = (filterKey: 'under30Completion' | 'inactive7Days', value: boolean) => {
+    const newFilters = {
+      ...filters,
+      [filterKey]: value
+    };
+    setFilters(newFilters);
+    onFiltersChange({
+      completionFilter,
+      projectFilters: filters.projectFilters,
+      under30Completion: newFilters.under30Completion,
+      inactive7Days: newFilters.inactive7Days,
       timezone: "all",
       searchQuery
     });
@@ -89,12 +115,16 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
         week4: false,
         hackathon: false,
         communityCreation: false
-      }
+      },
+      under30Completion: false,
+      inactive7Days: false
     };
     setFilters(clearedFilters);
     onFiltersChange({
       completionFilter: [0, 100],
       projectFilters: clearedFilters.projectFilters,
+      under30Completion: false,
+      inactive7Days: false,
       timezone: "all",
       searchQuery: ""
     });
@@ -175,6 +205,32 @@ export default function SearchAndFilters({ onFiltersChange }: SearchAndFiltersPr
                         <Label htmlFor={`project-${project.key}`} className="text-sm font-normal">{project.label}</Label>
                       </div>
                     ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-sm">Special Filters</Label>
+                  <div className="grid grid-cols-1 gap-2">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="under-30-completion" 
+                        checked={filters.under30Completion}
+                        onCheckedChange={(checked) => 
+                          handleSpecialFilterChange('under30Completion', !!checked)
+                        }
+                      />
+                      <Label htmlFor="under-30-completion" className="text-sm font-normal">Under 30% completion</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="inactive-7-days" 
+                        checked={filters.inactive7Days}
+                        onCheckedChange={(checked) => 
+                          handleSpecialFilterChange('inactive7Days', !!checked)
+                        }
+                      />
+                      <Label htmlFor="inactive-7-days" className="text-sm font-normal">Inactive for 7+ days</Label>
+                    </div>
                   </div>
                 </div>
 
